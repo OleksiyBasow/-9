@@ -1,0 +1,45 @@
+#include <iostream>
+#include <string>
+#include <cctype>
+
+// Завдання 1
+int custom_compare(const std::string& str1, const std::string& str2) {
+    if (str1.length() != str2.length()) {
+        return str1.length() < str2.length() ? -1 : 1;
+    }
+
+    for (size_t i = 0; i < str1.length(); ++i) {
+        if (std::tolower(str1[i]) != std::tolower(str2[i])) {
+            return std::tolower(str1[i]) < std::tolower(str2[i]) ? -1 : 1;
+        }
+    }
+
+    return 0;
+}
+
+// Завдання 2
+std::string insert_stars(const std::string& S, int N) {
+    std::string result;
+    for (size_t i = 0; i < S.length(); ++i) {
+        result += S[i];
+        if ((i + 1) % N == 0 && i != S.length() - 1) {
+            result += '*';
+        }
+    }
+    return result;
+}
+
+int main() {
+    // Завдання 1
+    std::string str1 = "Hello";
+    std::string str2 = "hello";
+    std::cout << "Результат порівняння: " << custom_compare(str1, str2) << std::endl;
+
+    // Завдання 2
+    std::string S = "HelloWorld";
+    int N = 3;
+    std::string result = insert_stars(S, N);
+    std::cout << "Результат вставки зірочок: " << result << std::endl;
+
+    return 0;
+}
